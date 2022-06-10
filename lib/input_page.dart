@@ -8,6 +8,11 @@ class InputPage extends StatefulWidget {
 }
 
 class _InputPageState extends State<InputPage> {
+
+  // Define Universal variables
+  double brd = 20.0, mrg =  8.0;
+  Color myColor = const Color(0xFF1D1E33);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -15,8 +20,57 @@ class _InputPageState extends State<InputPage> {
         centerTitle: true,
         title: const Text('BMI CALCULATOR'),
       ),
-      body: const Center(
-        child: Text('My Text'),
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 2, vertical: 2),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          mainAxisSize: MainAxisSize.max,
+          children: [
+            Expanded(
+              child: Row(
+                children: [
+                  Expanded(
+                    // 0xFF1D1E33
+                    child: Container(
+                      margin: EdgeInsets.all(mrg),
+                      decoration: BoxDecoration(
+                        color: myColor,
+                        borderRadius: BorderRadius.circular(brd),
+                      ),
+                    ),
+                  ),
+                  Expanded(
+                    child: Container(
+                      margin: EdgeInsets.all(mrg),
+                      decoration: BoxDecoration(
+                        color: myColor,
+                        borderRadius: BorderRadius.circular(brd),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Expanded(
+              child: Container(
+                margin: EdgeInsets.all(mrg),
+                decoration: BoxDecoration(
+                  color: myColor,
+                  borderRadius: BorderRadius.circular(brd),
+                ),
+              ),
+            ),
+            Expanded(
+              child: Container(
+                margin: EdgeInsets.all(mrg),
+                decoration: BoxDecoration(
+                  color: myColor,
+                  borderRadius: BorderRadius.circular(brd),
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
