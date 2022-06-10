@@ -8,9 +8,8 @@ class InputPage extends StatefulWidget {
 }
 
 class _InputPageState extends State<InputPage> {
-
   // Define Universal variables
-  double brd = 20.0, mrg =  8.0;
+  double brd = 20.0, mrg = 8.0;
   Color myColor = const Color(0xFF1D1E33);
 
   @override
@@ -31,46 +30,51 @@ class _InputPageState extends State<InputPage> {
                 children: [
                   Expanded(
                     // 0xFF1D1E33
-                    child: Container(
-                      margin: EdgeInsets.all(mrg),
-                      decoration: BoxDecoration(
-                        color: myColor,
-                        borderRadius: BorderRadius.circular(brd),
-                      ),
-                    ),
+                    child: ReusableCard(mrg: mrg, myColor: myColor, brd: brd),
                   ),
                   Expanded(
-                    child: Container(
-                      margin: EdgeInsets.all(mrg),
-                      decoration: BoxDecoration(
-                        color: myColor,
-                        borderRadius: BorderRadius.circular(brd),
-                      ),
-                    ),
+                    child: ReusableCard(mrg: mrg, myColor: myColor, brd: brd),
                   ),
                 ],
               ),
             ),
             Expanded(
-              child: Container(
-                margin: EdgeInsets.all(mrg),
-                decoration: BoxDecoration(
-                  color: myColor,
-                  borderRadius: BorderRadius.circular(brd),
-                ),
-              ),
+              child: ReusableCard(mrg: mrg, myColor: myColor, brd: brd),
             ),
             Expanded(
-              child: Container(
-                margin: EdgeInsets.all(mrg),
-                decoration: BoxDecoration(
-                  color: myColor,
-                  borderRadius: BorderRadius.circular(brd),
-                ),
+              child: Row(
+                children: [
+                  Expanded(child: ReusableCard(mrg: mrg, myColor: myColor, brd: brd)),
+                  Expanded(child: ReusableCard(mrg: mrg, myColor: myColor, brd: brd))
+                ],
               ),
             ),
           ],
         ),
+      ),
+    );
+  }
+}
+
+class ReusableCard extends StatelessWidget {
+  const ReusableCard({
+    Key? key,
+    required this.mrg,
+    required this.myColor,
+    required this.brd,
+  }) : super(key: key);
+
+  final double mrg;
+  final Color myColor;
+  final double brd;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: EdgeInsets.all(mrg),
+      decoration: BoxDecoration(
+        color: myColor,
+        borderRadius: BorderRadius.circular(brd),
       ),
     );
   }
