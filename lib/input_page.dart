@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:bmi_calculator/reusable_card.dart';
 
 class InputPage extends StatefulWidget {
   const InputPage({Key? key}) : super(key: key);
@@ -20,7 +21,7 @@ class _InputPageState extends State<InputPage> {
         title: const Text('BMI CALCULATOR'),
       ),
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 2, vertical: 2),
+        padding: const EdgeInsets.symmetric(horizontal: 3, vertical: 3),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           mainAxisSize: MainAxisSize.max,
@@ -44,37 +45,16 @@ class _InputPageState extends State<InputPage> {
             Expanded(
               child: Row(
                 children: [
-                  Expanded(child: ReusableCard(mrg: mrg, myColor: myColor, brd: brd)),
-                  Expanded(child: ReusableCard(mrg: mrg, myColor: myColor, brd: brd))
+                  Expanded(
+                      child:
+                          ReusableCard(mrg: mrg, myColor: myColor, brd: brd)),
+                  Expanded(
+                      child: ReusableCard(mrg: mrg, myColor: myColor, brd: brd))
                 ],
               ),
             ),
           ],
         ),
-      ),
-    );
-  }
-}
-
-class ReusableCard extends StatelessWidget {
-  const ReusableCard({
-    Key? key,
-    required this.mrg,
-    required this.myColor,
-    required this.brd,
-  }) : super(key: key);
-
-  final double mrg;
-  final Color myColor;
-  final double brd;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.all(mrg),
-      decoration: BoxDecoration(
-        color: myColor,
-        borderRadius: BorderRadius.circular(brd),
       ),
     );
   }
