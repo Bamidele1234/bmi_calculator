@@ -5,6 +5,15 @@ import 'package:bmi_calculator/reusable_card.dart';
 import 'card_content.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
+// Define Universal variables
+double brd = 20.0, mrg = 8.0, bch = 70;
+const activeColor = Color(0xFF1D1E33);
+const inactiveColor = Color(0xFF111328);
+const btnColor = Color(0xFFEB1555);
+
+/// Enum types for gender
+enum Gender { male, female }
+
 class InputPage extends StatefulWidget {
   const InputPage({Key? key}) : super(key: key);
 
@@ -13,12 +22,28 @@ class InputPage extends StatefulWidget {
 }
 
 class _InputPageState extends State<InputPage> {
-  // Define Universal variables
-  double brd = 20.0, mrg = 8.0;
-  Color activeColor = const Color(0xFF1D1E33);
-  Color inactiveColor = const Color(0xFF111328);
-  Color btnColor = const Color(0xFFEB1555);
-  double bch = 70;
+  Color maleCardColor = inactiveColor;
+  Color femaleCardColor = inactiveColor;
+
+  // TODO: Refactor this to use the ternary operator
+  void updateColor(Gender gender) {
+    if (gender == Gender.male) {
+      if (maleCardColor == inactiveColor) {
+        maleCardColor = activeColor;
+        femaleCardColor = inactiveColor;
+      } else {
+        maleCardColor = inactiveColor;
+      }
+    }
+    if (gender == Gender.female) {
+      if (femaleCardColor == inactiveColor) {
+        femaleCardColor = activeColor;
+        maleCardColor = inactiveColor;
+      } else {
+        femaleCardColor = inactiveColor;
+      }
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -40,11 +65,15 @@ class _InputPageState extends State<InputPage> {
                     // 0xFF1D1E33
                     child: GestureDetector(
                       onTap: () {
-                        log("The male card was pressed");
+                        setState(() {
+                          updateColor(Gender.male);
+                          log('The Male button is tapped');
+                        });
                       },
                       child: ReusableCard(
                         mrg: mrg,
-                        myColor: inactiveColor,
+                        myColor:
+                            maleCardColor, // TODO: Use the ternary operator here
                         brd: brd,
                         cardChild: const CardContent(
                             gender: 'MALE', icon: FontAwesomeIcons.mars),
@@ -54,11 +83,16 @@ class _InputPageState extends State<InputPage> {
                   Expanded(
                     child: GestureDetector(
                       onTap: () {
-                        log('The female card was pressed');
+                        setState(() {
+                          updateColor(Gender.female);
+
+                          log('The female button is tapped');
+                        });
                       },
                       child: ReusableCard(
                         mrg: mrg,
-                        myColor: inactiveColor,
+                        myColor:
+                            femaleCardColor, // TODO: Don't forget here too ! 👌
                         brd: brd,
                         cardChild: const CardContent(
                             gender: 'FEMALE', icon: FontAwesomeIcons.venus),
