@@ -12,6 +12,8 @@ class _InputPageState extends State<InputPage> {
   // Define Universal variables
   double brd = 20.0, mrg = 8.0;
   Color myColor = const Color(0xFF1D1E33);
+  Color btnColor = const Color(0xFFEB1555);
+  double bch = 70;
 
   @override
   Widget build(BuildContext context) {
@@ -52,6 +54,11 @@ class _InputPageState extends State<InputPage> {
                       child: ReusableCard(mrg: mrg, myColor: myColor, brd: brd))
                 ],
               ),
+            ),
+            Container(
+              color: btnColor,
+              margin: const EdgeInsets.only(top: 10.0),
+              height: bch,
             ),
           ],
         ),
