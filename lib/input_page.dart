@@ -31,7 +31,7 @@ class _InputPageState extends State<InputPage> {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Expanded(
-              flex: 4,
+              flex: kcardFlex,
               child: Row(
                 children: [
                   Expanded(
@@ -71,7 +71,7 @@ class _InputPageState extends State<InputPage> {
               ),
             ),
             Expanded(
-              flex: 4,
+              flex: kcardFlex,
               child: ReusableCard(
                 mrg: kmrg,
                 myColor: kactiveColor,
@@ -115,7 +115,7 @@ class _InputPageState extends State<InputPage> {
               ),
             ),
             Expanded(
-              flex: 4,
+              flex: kcardFlex,
               child: Row(
                 children: [
                   Expanded(
@@ -128,7 +128,7 @@ class _InputPageState extends State<InputPage> {
               ),
             ),
             Expanded(
-              flex: 2,
+              flex: kbuttonFlex,
               child: ReusableCard(mrg: kmrg, myColor: kbtnColor, brd: kbrd),
             ),
           ],
