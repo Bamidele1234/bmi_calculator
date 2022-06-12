@@ -1,10 +1,5 @@
 import 'package:flutter/material.dart';
-
-/// My own customizable textStyle
-const myTextStyle = TextStyle(
-  fontSize: 18.0,
-  color: Color(0XFF8E8D98),
-);
+import 'constants.dart';
 
 class CardContent extends StatelessWidget {
   const CardContent({
@@ -30,7 +25,7 @@ class CardContent extends StatelessWidget {
         ),
         Text(
           gender,
-          style: myTextStyle,
+          style: kmyTextStyle,
         ),
       ],
     );

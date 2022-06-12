@@ -2,12 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:bmi_calculator/reusable_card.dart';
 import 'card_content.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-
-// Define Universal variables
-double brd = 20.0, mrg = 8.0, bch = 70;
-const activeColor = Color(0xFF1D1E33);
-const inactiveColor = Color(0xFF111328);
-const btnColor = Color(0xFFEB1555);
+import 'constants.dart';
 
 /// Enum types for gender
 enum Gender { male, female }
@@ -21,6 +16,7 @@ class InputPage extends StatefulWidget {
 
 class _InputPageState extends State<InputPage> {
   Gender? selectedGender;
+  int height = 180;
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +29,6 @@ class _InputPageState extends State<InputPage> {
         padding: const EdgeInsets.symmetric(horizontal: 3, vertical: 3),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
-          mainAxisSize: MainAxisSize.max,
           children: [
             Expanded(
               child: Row(
@@ -41,11 +36,11 @@ class _InputPageState extends State<InputPage> {
                   Expanded(
                     // 0xFF1D1E33
                     child: ReusableCard(
-                      mrg: mrg,
+                      mrg: kmrg,
                       myColor: selectedGender == Gender.male
-                          ? activeColor
-                          : inactiveColor,
-                      brd: brd,
+                          ? kactiveColor
+                          : kinactiveColor,
+                      brd: kbrd,
                       onPressed: () {
                         setState(() {
                           selectedGender = Gender.male;
@@ -57,11 +52,11 @@ class _InputPageState extends State<InputPage> {
                   ),
                   Expanded(
                     child: ReusableCard(
-                      mrg: mrg,
+                      mrg: kmrg,
                       myColor: selectedGender == Gender.female
-                          ? activeColor
-                          : inactiveColor,
-                      brd: brd,
+                          ? kactiveColor
+                          : kinactiveColor,
+                      brd: kbrd,
                       onPressed: () {
                         setState(() {
                           selectedGender = Gender.female;
@@ -75,24 +70,64 @@ class _InputPageState extends State<InputPage> {
               ),
             ),
             Expanded(
-              child: ReusableCard(mrg: mrg, myColor: activeColor, brd: brd),
+              child: ReusableCard(
+                mrg: kmrg,
+                myColor: kactiveColor,
+                brd: kbrd,
+                cardChild: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Text(
+                      'HEIGHT',
+                      style: kmyTextStyle,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.baseline,
+                      textBaseline: TextBaseline.alphabetic,
+                      children: [
+                        Text(
+                          height.toString(),
+                          style: kmyNumStyle,
+                        ),
+                        const Text(
+                          'cm',
+                          style: kmyTextStyle,
+                        )
+                      ],
+                    ),
+                    Slider.adaptive(
+                      value: height.toDouble(),
+                      min: 120.0,
+                      max: 220.0,
+                      activeColor: kbtnColor,
+                      inactiveColor: const Color(0xFF8D8E98),
+                      onChanged: (double newValue) {
+                        setState(() {
+                          height = newValue.round();
+                        });
+                      },
+                    )
+                  ],
+                ),
+              ),
             ),
             Expanded(
               child: Row(
                 children: [
                   Expanded(
                       child: ReusableCard(
-                          mrg: mrg, myColor: activeColor, brd: brd)),
+                          mrg: kmrg, myColor: kactiveColor, brd: kbrd)),
                   Expanded(
                       child: ReusableCard(
-                          mrg: mrg, myColor: activeColor, brd: brd))
+                          mrg: kmrg, myColor: kactiveColor, brd: kbrd))
                 ],
               ),
             ),
             Container(
-              color: btnColor,
+              color: kbtnColor,
               margin: const EdgeInsets.only(top: 10.0),
-              height: bch,
+              height: kbch,
             ),
           ],
         ),
