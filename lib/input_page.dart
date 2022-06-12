@@ -31,6 +31,7 @@ class _InputPageState extends State<InputPage> {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Expanded(
+              flex: 4,
               child: Row(
                 children: [
                   Expanded(
@@ -70,6 +71,7 @@ class _InputPageState extends State<InputPage> {
               ),
             ),
             Expanded(
+              flex: 4,
               child: ReusableCard(
                 mrg: kmrg,
                 myColor: kactiveColor,
@@ -113,6 +115,7 @@ class _InputPageState extends State<InputPage> {
               ),
             ),
             Expanded(
+              flex: 4,
               child: Row(
                 children: [
                   Expanded(
@@ -124,10 +127,9 @@ class _InputPageState extends State<InputPage> {
                 ],
               ),
             ),
-            Container(
-              color: kbtnColor,
-              margin: const EdgeInsets.only(top: 10.0),
-              height: kbch,
+            Expanded(
+              flex: 2,
+              child: ReusableCard(mrg: kmrg, myColor: kbtnColor, brd: kbrd),
             ),
           ],
         ),
