@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:bmi_calculator/reusable_card.dart';
 import 'card_content.dart';
@@ -22,28 +20,7 @@ class InputPage extends StatefulWidget {
 }
 
 class _InputPageState extends State<InputPage> {
-  Color maleCardColor = inactiveColor;
-  Color femaleCardColor = inactiveColor;
-
-  // TODO: Refactor this to use the ternary operator
-  void updateColor(Gender gender) {
-    if (gender == Gender.male) {
-      if (maleCardColor == inactiveColor) {
-        maleCardColor = activeColor;
-        femaleCardColor = inactiveColor;
-      } else {
-        maleCardColor = inactiveColor;
-      }
-    }
-    if (gender == Gender.female) {
-      if (femaleCardColor == inactiveColor) {
-        femaleCardColor = activeColor;
-        maleCardColor = inactiveColor;
-      } else {
-        femaleCardColor = inactiveColor;
-      }
-    }
-  }
+  Gender? selectedGender;
 
   @override
   Widget build(BuildContext context) {
@@ -63,40 +40,35 @@ class _InputPageState extends State<InputPage> {
                 children: [
                   Expanded(
                     // 0xFF1D1E33
-                    child: GestureDetector(
-                      onTap: () {
+                    child: ReusableCard(
+                      mrg: mrg,
+                      myColor: selectedGender == Gender.male
+                          ? activeColor
+                          : inactiveColor,
+                      brd: brd,
+                      onPressed: () {
                         setState(() {
-                          updateColor(Gender.male);
-                          log('The Male button is tapped');
+                          selectedGender = Gender.male;
                         });
                       },
-                      child: ReusableCard(
-                        mrg: mrg,
-                        myColor:
-                            maleCardColor, // TODO: Use the ternary operator here
-                        brd: brd,
-                        cardChild: const CardContent(
-                            gender: 'MALE', icon: FontAwesomeIcons.mars),
-                      ),
+                      cardChild: const CardContent(
+                          gender: 'MALE', icon: FontAwesomeIcons.mars),
                     ),
                   ),
                   Expanded(
-                    child: GestureDetector(
-                      onTap: () {
+                    child: ReusableCard(
+                      mrg: mrg,
+                      myColor: selectedGender == Gender.female
+                          ? activeColor
+                          : inactiveColor,
+                      brd: brd,
+                      onPressed: () {
                         setState(() {
-                          updateColor(Gender.female);
-
-                          log('The female button is tapped');
+                          selectedGender = Gender.female;
                         });
                       },
-                      child: ReusableCard(
-                        mrg: mrg,
-                        myColor:
-                            femaleCardColor, // TODO: Don't forget here too ! 👌
-                        brd: brd,
-                        cardChild: const CardContent(
-                            gender: 'FEMALE', icon: FontAwesomeIcons.venus),
-                      ),
+                      cardChild: const CardContent(
+                          gender: 'FEMALE', icon: FontAwesomeIcons.venus),
                     ),
                   ),
                 ],
