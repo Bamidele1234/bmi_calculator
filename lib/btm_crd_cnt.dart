@@ -6,10 +6,18 @@ import 'package:bmi_calculator/reusable_iconbutton.dart';
 class BottomCardContent extends StatelessWidget {
   const BottomCardContent({
     Key? key,
-    required this.weight,
+    required this.value,
+    required this.title,
+    this.onIncrease,
+    this.onDecrease,
+    this.spacing = 15,
   }) : super(key: key);
 
-  final int weight;
+  final int value;
+  final String title;
+  final double spacing;
+  final Function()? onIncrease;
+  final Function()? onDecrease;
 
   @override
   Widget build(BuildContext context) {
@@ -17,25 +25,27 @@ class BottomCardContent extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        const Text(
-          'WEIGHT',
+        Text(
+          title.toUpperCase(),
           style: kmyTextStyle,
         ),
         Text(
-          weight.toString(),
+          value.toString(),
           style: kmyNumStyle,
         ),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: const [
+          children: [
             RoundIconButton(
               myIcon: FontAwesomeIcons.minus,
+              onPressed: onDecrease,
             ),
             SizedBox(
-              width: 15,
+              width: spacing,
             ),
             RoundIconButton(
               myIcon: FontAwesomeIcons.plus,
+              onPressed: onIncrease,
             ),
           ],
         ),

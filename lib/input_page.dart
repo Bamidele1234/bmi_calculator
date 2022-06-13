@@ -19,13 +19,22 @@ class _InputPageState extends State<InputPage> {
   Gender? selectedGender;
   int height = 180;
   int weight = 60;
+  int age = 25;
 
-  void decrement() {
+  void decWeight() {
     weight--;
   }
 
-  void increment() {
+  void incWeight() {
     weight++;
+  }
+
+  void incAge() {
+    age++;
+  }
+
+  void decAge() {
+    age--;
   }
 
   @override
@@ -143,12 +152,43 @@ class _InputPageState extends State<InputPage> {
                       mrg: kmrg,
                       myColor: kactiveColor,
                       brd: kbrd,
-                      cardChild: BottomCardContent(weight: weight),
+                      cardChild: BottomCardContent(
+                        title: 'Weight',
+                        value: weight,
+                        onIncrease: () {
+                          setState(() {
+                            incWeight();
+                          });
+                        },
+                        onDecrease: () {
+                          setState(() {
+                            decWeight();
+                          });
+                        },
+                      ),
                     ),
                   ),
                   Expanded(
-                      child: ReusableCard(
-                          mrg: kmrg, myColor: kactiveColor, brd: kbrd))
+                    child: ReusableCard(
+                      mrg: kmrg,
+                      myColor: kactiveColor,
+                      brd: kbrd,
+                      cardChild: BottomCardContent(
+                        title: 'Age',
+                        value: age,
+                        onIncrease: () {
+                          setState(() {
+                            incAge();
+                          });
+                        },
+                        onDecrease: () {
+                          setState(() {
+                            decAge();
+                          });
+                        },
+                      ),
+                    ),
+                  )
                 ],
               ),
             ),
