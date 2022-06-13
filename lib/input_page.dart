@@ -194,7 +194,22 @@ class _InputPageState extends State<InputPage> {
             ),
             Expanded(
               flex: kbuttonFlex,
-              child: ReusableCard(mrg: kmrg, myColor: kbtnColor, brd: kbrd),
+              child: ReusableCard(
+                mrg: kmrg,
+                myColor: kbtnColor,
+                brd: kbrd,
+                cardChild: const Center(
+                  child: Text('CALCULATE',
+                      style: TextStyle(
+                        fontSize: 23,
+                        fontWeight: FontWeight.w600,
+                        letterSpacing: 3,
+                      )),
+                ),
+                onPressed: () {
+                  Navigator.pushNamed(context, 'Screen2');
+                },
+              ),
             ),
           ],
         ),
