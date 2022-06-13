@@ -3,6 +3,7 @@ import 'package:bmi_calculator/reusable_card.dart';
 import 'card_content.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'constants.dart';
+import 'package:bmi_calculator/reusable_iconbutton.dart';
 
 /// Enum types for gender
 enum Gender { male, female }
@@ -17,6 +18,7 @@ class InputPage extends StatefulWidget {
 class _InputPageState extends State<InputPage> {
   Gender? selectedGender;
   int height = 180;
+  int weight = 60;
 
   @override
   Widget build(BuildContext context) {
@@ -98,17 +100,27 @@ class _InputPageState extends State<InputPage> {
                         )
                       ],
                     ),
-                    Slider.adaptive(
-                      value: height.toDouble(),
-                      min: 120.0,
-                      max: 220.0,
-                      activeColor: kbtnColor,
-                      inactiveColor: const Color(0xFF8D8E98),
-                      onChanged: (double newValue) {
-                        setState(() {
-                          height = newValue.round();
-                        });
-                      },
+                    SliderTheme(
+                      data: SliderTheme.of(context).copyWith(
+                        inactiveTrackColor: kinactiveTrackColor,
+                        activeTrackColor: Colors.white,
+                        thumbColor: kbtnColor,
+                        overlayColor: koverlayColor,
+                        thumbShape: const RoundSliderThumbShape(
+                            enabledThumbRadius: kenabledThumbRadius),
+                        overlayShape: const RoundSliderOverlayShape(
+                            overlayRadius: kOverlayRadius),
+                      ),
+                      child: Slider.adaptive(
+                        value: height.toDouble(),
+                        min: 120.0,
+                        max: 220.0,
+                        onChanged: (double newValue) {
+                          setState(() {
+                            height = newValue.round();
+                          });
+                        },
+                      ),
                     )
                   ],
                 ),
@@ -119,8 +131,40 @@ class _InputPageState extends State<InputPage> {
               child: Row(
                 children: [
                   Expanded(
-                      child: ReusableCard(
-                          mrg: kmrg, myColor: kactiveColor, brd: kbrd)),
+                    child: ReusableCard(
+                      mrg: kmrg,
+                      myColor: kactiveColor,
+                      brd: kbrd,
+                      cardChild: Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          const Text(
+                            'WEIGHT',
+                            style: kmyTextStyle,
+                          ),
+                          Text(
+                            weight.toString(),
+                            style: kmyNumStyle,
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: const [
+                              RoundIconButton(
+                                myIcon: FontAwesomeIcons.minus,
+                              ),
+                              SizedBox(
+                                width: 15,
+                              ),
+                              RoundIconButton(
+                                myIcon: FontAwesomeIcons.plus,
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
                   Expanded(
                       child: ReusableCard(
                           mrg: kmrg, myColor: kactiveColor, brd: kbrd))
