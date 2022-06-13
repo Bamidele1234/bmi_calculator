@@ -2,9 +2,14 @@ import 'package:flutter/material.dart';
 import 'constants.dart';
 
 class RoundIconButton extends StatelessWidget {
-  const RoundIconButton({Key? key, this.myIcon}) : super(key: key);
+  const RoundIconButton({
+    Key? key,
+    this.myIcon,
+    this.onPressed,
+  }) : super(key: key);
 
   final IconData? myIcon;
+  final Function()? onPressed;
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +19,7 @@ class RoundIconButton extends StatelessWidget {
       elevation: 6,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(kbrd)),
       fillColor: kfillColor,
-      onPressed: () {},
+      onPressed: onPressed,
     );
   }
 }

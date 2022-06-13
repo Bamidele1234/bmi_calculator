@@ -3,7 +3,7 @@ import 'package:bmi_calculator/reusable_card.dart';
 import 'card_content.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'constants.dart';
-import 'package:bmi_calculator/reusable_iconbutton.dart';
+import 'btm_crd_cnt.dart';
 
 /// Enum types for gender
 enum Gender { male, female }
@@ -19,6 +19,14 @@ class _InputPageState extends State<InputPage> {
   Gender? selectedGender;
   int height = 180;
   int weight = 60;
+
+  void decrement() {
+    weight--;
+  }
+
+  void increment() {
+    weight++;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -135,34 +143,7 @@ class _InputPageState extends State<InputPage> {
                       mrg: kmrg,
                       myColor: kactiveColor,
                       brd: kbrd,
-                      cardChild: Column(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          const Text(
-                            'WEIGHT',
-                            style: kmyTextStyle,
-                          ),
-                          Text(
-                            weight.toString(),
-                            style: kmyNumStyle,
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: const [
-                              RoundIconButton(
-                                myIcon: FontAwesomeIcons.minus,
-                              ),
-                              SizedBox(
-                                width: 15,
-                              ),
-                              RoundIconButton(
-                                myIcon: FontAwesomeIcons.plus,
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
+                      cardChild: BottomCardContent(weight: weight),
                     ),
                   ),
                   Expanded(
