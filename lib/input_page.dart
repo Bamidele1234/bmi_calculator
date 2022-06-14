@@ -47,7 +47,7 @@ class _InputPageState extends State<InputPage> {
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 3, vertical: 3),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
+          //crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Expanded(
               flex: kcardFlex,
@@ -198,13 +198,11 @@ class _InputPageState extends State<InputPage> {
                 mrg: kmrg,
                 myColor: kbtnColor,
                 brd: kbrd,
-                cardChild: const Center(
-                  child: Text('CALCULATE',
-                      style: TextStyle(
-                        fontSize: 23,
-                        fontWeight: FontWeight.w600,
-                        letterSpacing: 3,
-                      )),
+                cardChild: const Padding(
+                  padding: EdgeInsets.only(bottom: 5),
+                  child: Center(
+                    child: Text('CALCULATE', style: kmyBottomButtonTextStyle),
+                  ),
                 ),
                 onPressed: () {
                   Navigator.pushNamed(context, 'Screen2');

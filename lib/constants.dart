@@ -24,3 +24,17 @@ const kmyNumStyle = TextStyle(
   fontSize: 48.0,
   fontWeight: FontWeight.w900,
 );
+
+/// The bottom button textStyle
+const kmyBottomButtonTextStyle = TextStyle(
+  fontSize: 25.0,
+  fontWeight: FontWeight.bold,
+  letterSpacing: 2,
+);
+
+const kmyCalculatedSize = TextStyle(
+  fontSize: 10.0,
+  fontWeight: FontWeight.w200,
+);
+
+/// The
