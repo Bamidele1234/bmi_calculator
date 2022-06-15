@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'constants.dart';
+import '../constants.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:bmi_calculator/reusable_iconbutton.dart';
+import 'package:bmi_calculator/components/reusable_iconbutton.dart';
 
 class BottomCardContent extends StatelessWidget {
   const BottomCardContent({

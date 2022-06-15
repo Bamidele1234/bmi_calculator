@@ -1,9 +1,11 @@
+import 'package:bmi_calculator/screens/results_page.dart';
 import 'package:flutter/material.dart';
-import 'package:bmi_calculator/reusable_card.dart';
-import 'card_content.dart';
+import 'package:bmi_calculator/components/reusable_card.dart';
+import '../components/card_content.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'constants.dart';
-import 'btm_crd_cnt.dart';
+import '../constants.dart';
+import '../components/btm_crd_cnt.dart';
+import 'package:bmi_calculator/calculator_brain.dart';
 
 /// Enum types for gender
 enum Gender { male, female }
@@ -205,7 +207,17 @@ class _InputPageState extends State<InputPage> {
                   ),
                 ),
                 onPressed: () {
-                  Navigator.pushNamed(context, 'Screen2');
+                  var brain = CalculatorBrain(height, weight);
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => ResultsPage(
+                        bmiValue: brain.getBmi(),
+                        bmiResult: brain.getResult(),
+                        bmiAdvice: brain.getAdvice(),
+                      ),
+                    ),
+                  );
                 },
               ),
             ),

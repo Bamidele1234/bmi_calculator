@@ -33,8 +33,18 @@ const kmyBottomButtonTextStyle = TextStyle(
 );
 
 const kmyCalculatedSize = TextStyle(
-  fontSize: 10.0,
-  fontWeight: FontWeight.w200,
+  fontSize: 100.0,
+  fontWeight: FontWeight.bold,
+);
+
+const kmyCalculatedCondition = TextStyle(
+  color: Color(0xFF24D876),
+  fontWeight: FontWeight.bold,
+  fontSize: 22,
+);
+
+const kmyAdvice = TextStyle(
+  fontSize: 22,
 );
 
 /// The
