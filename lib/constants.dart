@@ -46,5 +46,3 @@ const kmyCalculatedCondition = TextStyle(
 const kmyAdvice = TextStyle(
   fontSize: 22,
 );
-
-/// The
