@@ -10,12 +10,14 @@ class BottomCardContent extends StatelessWidget {
     required this.title,
     this.onIncrease,
     this.onDecrease,
+    this.subText,
     this.spacing = 15,
   }) : super(key: key);
 
   final int value;
   final String title;
   final double spacing;
+  final Text? subText;
   final Function()? onIncrease;
   final Function()? onDecrease;
 
@@ -29,9 +31,18 @@ class BottomCardContent extends StatelessWidget {
           title.toUpperCase(),
           style: kmyTextStyle,
         ),
-        Text(
-          value.toString(),
-          style: kmyNumStyle,
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.baseline,
+          textBaseline: TextBaseline.alphabetic,
+          children: [
+            Text(
+              value.toString(),
+              style: kmyNumStyle,
+            ),
+            // If the value of subtext is null return an unseen widget
+            subText ?? const SizedBox.shrink()
+          ],
         ),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,

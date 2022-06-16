@@ -20,8 +20,8 @@ class InputPage extends StatefulWidget {
 class _InputPageState extends State<InputPage> {
   Gender? selectedGender;
   int height = 180;
-  int weight = 60;
-  int age = 25;
+  int weight = 6;
+  int age = 5;
 
   void decWeight() {
     weight--;
@@ -38,6 +38,18 @@ class _InputPageState extends State<InputPage> {
   void decAge() {
     age--;
   }
+
+  displaySb(String message) =>
+      ScaffoldMessenger.of(context).showSnackBar(ksnackBar(message));
+
+  ksnackBar(String message) => SnackBar(
+        duration: const Duration(seconds: 1),
+        content: Text(
+          message,
+          textAlign: TextAlign.center,
+          style: const TextStyle(fontSize: 15.0),
+        ),
+      );
 
   @override
   Widget build(BuildContext context) {
@@ -157,14 +169,24 @@ class _InputPageState extends State<InputPage> {
                       cardChild: BottomCardContent(
                         title: 'Weight',
                         value: weight,
+                        subText: const Text(
+                          'kg',
+                          style: kmyTextStyle,
+                        ),
                         onIncrease: () {
                           setState(() {
-                            incWeight();
+                            weight >= 1200
+                                ? displaySb(
+                                    'Your weight cannot be greater than 1200kg')
+                                : incWeight();
                           });
                         },
                         onDecrease: () {
                           setState(() {
-                            decWeight();
+                            weight <= 1
+                                ? displaySb(
+                                    'Your weight cannot be less than 1kg')
+                                : decWeight();
                           });
                         },
                       ),
@@ -180,12 +202,17 @@ class _InputPageState extends State<InputPage> {
                         value: age,
                         onIncrease: () {
                           setState(() {
-                            incAge();
+                            age >= 150
+                                ? displaySb(
+                                    'Your age cannot be greater than 150')
+                                : incAge();
                           });
                         },
                         onDecrease: () {
                           setState(() {
-                            decAge();
+                            age <= 1
+                                ? displaySb('Your age cannot be less than 1')
+                                : decAge();
                           });
                         },
                       ),
