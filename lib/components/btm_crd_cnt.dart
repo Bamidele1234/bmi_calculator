@@ -11,6 +11,8 @@ class BottomCardContent extends StatelessWidget {
     this.onIncrease,
     this.onDecrease,
     this.subText,
+    required this.plusVisible,
+    required this.minusVisible,
     this.spacing = 15,
   }) : super(key: key);
 
@@ -18,6 +20,8 @@ class BottomCardContent extends StatelessWidget {
   final String title;
   final double spacing;
   final Text? subText;
+  final bool plusVisible;
+  final bool minusVisible;
   final Function()? onIncrease;
   final Function()? onDecrease;
 
@@ -47,16 +51,22 @@ class BottomCardContent extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            RoundIconButton(
-              myIcon: FontAwesomeIcons.minus,
-              onPressed: onDecrease,
+            Visibility(
+              visible: minusVisible,
+              child: RoundIconButton(
+                myIcon: FontAwesomeIcons.minus,
+                onPressed: onDecrease,
+              ),
             ),
             SizedBox(
               width: spacing,
             ),
-            RoundIconButton(
-              myIcon: FontAwesomeIcons.plus,
-              onPressed: onIncrease,
+            Visibility(
+              visible: plusVisible,
+              child: RoundIconButton(
+                myIcon: FontAwesomeIcons.plus,
+                onPressed: onIncrease,
+              ),
             ),
           ],
         ),

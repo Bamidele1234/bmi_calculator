@@ -20,8 +20,12 @@ class InputPage extends StatefulWidget {
 class _InputPageState extends State<InputPage> {
   Gender? selectedGender;
   int height = 180;
-  int weight = 45;
-  int age = 20;
+  int weight = 1197;
+  int age = 3;
+  bool plusVisibleW = true;
+  bool minusVisibleW = true;
+  bool plusVisibleA = true;
+  bool minusVisibleA = true;
 
   void decWeight() {
     weight--;
@@ -169,24 +173,38 @@ class _InputPageState extends State<InputPage> {
                       cardChild: BottomCardContent(
                         title: 'Weight',
                         value: weight,
+                        plusVisible: plusVisibleW,
+                        minusVisible: minusVisibleW,
                         subText: const Text(
                           'kg',
                           style: kmyTextStyle,
                         ),
                         onIncrease: () {
                           setState(() {
-                            weight >= 1200
-                                ? displaySb(
-                                    'Your weight cannot be greater than 1200kg')
-                                : incWeight();
+                            if (weight >= 1200) {
+                              displaySb(
+                                  'Your weight cannot be greater than 1200kg');
+                              plusVisibleW = false;
+                            } else {
+                              incWeight();
+                              plusVisibleW = true;
+                              minusVisibleW = true;
+                            }
                           });
                         },
+                        // This is where the error is coming from,
+                        // meaning that before the minus button will be shown
+                        // I have to press it, but it's not there
                         onDecrease: () {
                           setState(() {
-                            weight <= 1
-                                ? displaySb(
-                                    'Your weight cannot be less than 1kg')
-                                : decWeight();
+                            if (weight <= 1) {
+                              displaySb('Your weight cannot be less than 1kg');
+                              minusVisibleW = false;
+                            } else {
+                              minusVisibleW = true;
+                              plusVisibleW = true;
+                              decWeight();
+                            }
                           });
                         },
                       ),
@@ -200,19 +218,30 @@ class _InputPageState extends State<InputPage> {
                       cardChild: BottomCardContent(
                         title: 'Age',
                         value: age,
+                        plusVisible: plusVisibleA,
+                        minusVisible: minusVisibleA,
                         onIncrease: () {
                           setState(() {
-                            age >= 150
-                                ? displaySb(
-                                    'Your age cannot be greater than 150')
-                                : incAge();
+                            if (age >= 150) {
+                              displaySb('Your age cannot be greater than 150');
+                              plusVisibleA = false;
+                            } else {
+                              plusVisibleA = true;
+                              minusVisibleA = true;
+                              incAge();
+                            }
                           });
                         },
                         onDecrease: () {
                           setState(() {
-                            age <= 1
-                                ? displaySb('Your age cannot be less than 1')
-                                : decAge();
+                            if (age <= 1) {
+                              displaySb('Your age cannot be less than 1');
+                              minusVisibleA = false;
+                            } else {
+                              minusVisibleA = true;
+                              plusVisibleA = true;
+                              decAge();
+                            }
                           });
                         },
                       ),
