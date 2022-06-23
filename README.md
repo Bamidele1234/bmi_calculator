@@ -3,13 +3,13 @@ An app that displays your body mass index
 ## Description
 
 ## Screenshots
-**First Page**
+**Main Page**
 --
-<img src = "app/src/main/res/drawable/launch.jpg" width = "400">
+<img src = "images/Bmi1.jpg" width = "400">
 
-**First Page**
+**Results Page**
 --
-<img src = "app/src/main/res/drawable/launch.jpg" width = "400">
+<img src = "images/Bmi2.jpg" width = "400">
 
 
 
